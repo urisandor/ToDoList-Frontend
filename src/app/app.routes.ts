@@ -1,6 +1,5 @@
 // src/app/app.routes.ts
 import { Routes } from '@angular/router';
-
 // 1. Importáljuk az összes komponenst, amire szükségünk van
 import { RegisterComponent } from './components/register/register';
 import { LoginComponent } from './components/login/login';

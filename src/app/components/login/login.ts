@@ -44,7 +44,7 @@ export class LoginComponent {
         console.log('Sikeres bejelentkezés!', response);
         // Sikeres bejelentkezés után átirányítjuk a főoldalra
         // Később ez lesz a teendők listája (pl. '/todos')
-        this.router.navigate(['/']); 
+        this.router.navigate(['/todos']); 
       },
       (error) => {
         console.error('Hiba a bejelentkezés során:', error);

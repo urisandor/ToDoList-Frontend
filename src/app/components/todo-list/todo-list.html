@@ -1,10 +1,20 @@
 <div class="container">
-  
-    <h1>{{ title }}</h1>
+  <h1>{{ title }}</h1>
 
   <hr>
 
-  <h2>Teendők Listája</h2>
+  <div class="add-task-form">
+    <input 
+      type="text" 
+      placeholder="Új teendő neve..." 
+      [(ngModel)]="newTaskName" 
+      (keydown.enter)="onAddTask()">
+    
+    <button (click)="onAddTask()" class="btn-add">+</button>
+  </div>
+  <hr>
+
+  <h2>Meglévő Teendők</h2>
 
   <ul class="todo-list">
     <li *ngFor="let todo of todos" class="todo-item">
@@ -13,9 +23,11 @@
 
       <span>{{ todo.name }}</span>
 
-      <button (click)="deleteTodo(todo.id)" class="btn-delete">Törlés</button>
+      <button (click)="deleteTodo(todo.id)" class="btn-delete">-</button>
+    </li>
+
+    <li *ngIf="todos.length === 0" class="empty-list-message">
+      Még nincsenek teendőid. Adj hozzá egyet a fenti '+' gombbal!
     </li>
   </ul>
-
-  
 </div>
