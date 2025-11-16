@@ -17,7 +17,7 @@ export interface TodoItem {
 export class TodoService {
 
   // 2. Addj hozzá egy "private readonly" API URL-t
-  private readonly apiUrl = 'http://localhost:7230/api/TodoItems'; // <-- Cseréld le a .NET API-d portjára!
+  private readonly apiUrl = 'https://localhost:7230/api/TodoItems'; // <-- Cseréld le a .NET API-d portjára!
 
   // 3. Injektáld a HttpClient-t a konstruktorba
   constructor(private http: HttpClient) { }
@@ -26,13 +26,13 @@ export class TodoService {
   getTodos(): Observable<TodoItem[]> {
     // Egy GET kérést küldünk a backend /api/TodoItems végpontjára
     // (A végpont nevét ellenőrizni kell a .NET Controllerben!)
-    return this.http.get<TodoItem[]>(`${this.apiUrl}/api/TodoItems`);
+    return this.http.get<TodoItem[]>(`${this.apiUrl}`);
   }
   //deleteTodo metódus hozzáadva
   deleteTodo(id: number): Observable<void> {
     // Egy DELETE kérést küldünk a backend /api/TodoItems/{id} végpontjára
     // Pl: https://localhost:7230/api/TodoItems/5
-    return this.http.delete<void>(`${this.apiUrl}/api/TodoItems/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
   addTodo(todoName: string): Observable<TodoItem> {
