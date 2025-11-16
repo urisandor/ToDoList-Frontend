@@ -43,5 +43,13 @@ export class TodoService {
     return this.http.post<TodoItem>(`${this.apiUrl}`, todoDto);
   }
 
+  updateTodoStatus(id: number, newStatus: boolean): Observable<TodoItem> {
+    
+    // A DTO, amit a backend vár: { "isComplete": true/false }
+    const statusDto = { isComplete: newStatus };
+
+    // Egy PUT kérést küldünk a .../api/TodoItems/{id}/status végpontra
+    return this.http.put<TodoItem>(`${this.apiUrl}/${id}/status`, statusDto);
+  }
 
 }

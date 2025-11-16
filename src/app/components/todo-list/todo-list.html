@@ -19,7 +19,10 @@
   <ul class="todo-list">
     <li *ngFor="let todo of todos" class="todo-item">
       
-      <input type="checkbox" [checked]="todo.isComplete" disabled>
+      <input 
+        type="checkbox" 
+        [checked]="todo.isComplete" 
+        (change)="onToggleComplete(todo)">
 
       <span>{{ todo.name }}</span>
 

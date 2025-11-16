@@ -65,4 +65,26 @@ export class TodoListComponent implements OnInit { // Implementáljuk az OnInit-
       }
     );
   }
+
+  onToggleComplete(todo: TodoItem): void {
+    // 1. Kiszámoljuk az új állapotot (az ellenkezőjét)
+    const newStatus = !todo.isComplete;
+
+    // 2. Meghívjuk a szolgáltatást az új állapottal
+    this.todoService.updateTodoStatus(todo.id, newStatus).subscribe(
+      (updatedTodo) => {
+        // 3. Sikeres frissítés (amit a backend visszaküldött)
+        // Frissítjük a helyi listában lévő elemet.
+        todo.isComplete = updatedTodo.isComplete;
+        console.log(`Todo (id: ${todo.id}) állapota frissítve: ${updatedTodo.isComplete}`);
+      },
+      (error) => {
+        console.error(`Hiba a(z) ${todo.id} ID-jű teendő frissítésekor:`, error);
+        
+        // Opcionális: Ha hiba történik, visszaállítjuk a checkboxot
+        // (Ezt hívják "optimistic update" visszaállításának)
+        // todo.isComplete = !newStatus; 
+      }
+    );
+  }
 }
